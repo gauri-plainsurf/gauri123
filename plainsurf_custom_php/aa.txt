@@ -1,0 +1,37 @@
+<?php
+session_start();
+session_destroy();
+if(!isset($_SESSION['Email_id'])){
+header('location:contact_list.php');
+    }
+   
+
+?>
+<?php 
+session_start();
+
+$conn= mysqli_connect('localhost','root');
+//check connection
+
+if($conn){
+    echo "connection successful";
+}
+else{
+echo "no connection";
+}
+mysqli_select_db($conn, 'form');
+$query="select *from login (username,password)VALUES('$username','$password')";
+mysqli_query($conn, $query);
+
+if($_SESSION['$username']='gauri' && $_SESSION['$password']='123')
+{
+    header('location:contact_list.php');
+}
+ 
+else{
+ header('location:index.php');
+}
+
+?>
+mysqli_close();
+
